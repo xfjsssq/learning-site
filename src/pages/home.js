@@ -37,7 +37,7 @@ export function renderHome(app) {
         <div class="subject-grid">
           ${meta
             .map((subject) => `
-              <a href="${link('/login')}" data-nav="/login" class="subject-card">
+              <a href="${link('/login')}" class="subject-card">
                 <div class="subject-icon">${subject.icon}</div>
                 <div class="subject-info">
                   <h3>${subject.title}</h3>

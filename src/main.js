@@ -44,7 +44,7 @@ async function bootstrap() {
     const cleanPath = base && path.startsWith(base) ? path.slice(base.length) || '/' : path;
     
     if (user && (cleanPath === '/login' || cleanPath === '/register')) {
-      navigate('/settings');
+      navigate('/');
     }
   });
 
