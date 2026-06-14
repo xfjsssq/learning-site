@@ -1,0 +1,96 @@
+{
+  "title": "我的学习笔记",
+  "description": "个人学习进度追踪与笔记站",
+  "subjects": [
+    {
+      "id": "web-dev",
+      "title": "Web 开发",
+      "description": "前端、后端、全栈开发相关技术",
+      "icon": "🌐",
+      "chapters": [
+        {
+          "id": "chapter-01",
+          "title": "第一章：HTML 与 CSS 基础",
+          "file": "chapter-01.md",
+          "order": 1
+        },
+        {
+          "id": "chapter-02",
+          "title": "第二章：JavaScript 核心",
+          "file": "chapter-02.md",
+          "order": 2
+        },
+        {
+          "id": "chapter-03",
+          "title": "第三章：Vue 3 组件化开发",
+          "file": "chapter-03.md",
+          "order": 3
+        },
+        {
+          "id": "web-api-01",
+          "title": "第四章：RESTful API 设计基础",
+          "file": "web-api-01.md",
+          "order": 4
+        },
+        {
+          "id": "web-node-01",
+          "title": "第五章：Node.js 与 Express 入门",
+          "file": "web-node-01.md",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "algorithms",
+      "title": "算法与数据结构",
+      "description": "经典算法、数据结构与刷题技巧",
+      "icon": "🧮",
+      "chapters": [
+        {
+          "id": "algo-01",
+          "title": "第一章：数组与链表",
+          "file": "algo-01.md",
+          "order": 1
+        },
+        {
+          "id": "algo-02",
+          "title": "第二章：栈与队列",
+          "file": "algo-02.md",
+          "order": 2
+        },
+        {
+          "id": "algo-03",
+          "title": "第三章：递归与分治",
+          "file": "algo-03.md",
+          "order": 3
+        },
+        {
+          "id": "algo-04",
+          "title": "第四章：二叉树与图",
+          "file": "algo-04.md",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "databases",
+      "title": "数据库原理",
+      "description": "关系型/非关系型数据库设计与优化",
+      "icon": "🗄️",
+      "chapters": [
+        {
+          "id": "db-01",
+          "title": "第一章：SQL 基础与进阶",
+          "file": "db-01.md",
+          "order": 1
+        },
+        {
+          "id": "db-nosql-01",
+          "title": "第二章：NoSQL 与文档数据库",
+          "file": "db-nosql-01.md",
+          "order": 2
+        }
+      ]
+    }
+  ]
+}

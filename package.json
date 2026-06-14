@@ -1,0 +1,18 @@
+{
+  "name": "learning-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/copy-404.cjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "marked": "^15.0.7"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}
