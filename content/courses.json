@@ -3,93 +3,51 @@
   "description": "个人学习进度追踪与笔记站",
   "subjects": [
     {
-      "id": "web-dev",
-      "title": "Web 开发",
-      "description": "前端、后端、全栈开发相关技术",
-      "icon": "🌐",
+      "id": "math",
+      "title": "高等数学",
+      "description": "极限、微积分、级数等核心内容",
+      "icon": "📐",
       "chapters": [
-        {
-          "id": "chapter-01",
-          "title": "第一章：HTML 与 CSS 基础",
-          "file": "chapter-01.md",
-          "order": 1
-        },
-        {
-          "id": "chapter-02",
-          "title": "第二章：JavaScript 核心",
-          "file": "chapter-02.md",
-          "order": 2
-        },
-        {
-          "id": "chapter-03",
-          "title": "第三章：Vue 3 组件化开发",
-          "file": "chapter-03.md",
-          "order": 3
-        },
-        {
-          "id": "web-api-01",
-          "title": "第四章：RESTful API 设计基础",
-          "file": "web-api-01.md",
-          "order": 4
-        },
-        {
-          "id": "web-node-01",
-          "title": "第五章：Node.js 与 Express 入门",
-          "file": "web-node-01.md",
-          "order": 5
-        }
+        { "id": "chapter-01", "title": "第一章：开始学习", "file": "chapter-01.md", "order": 1 },
+        { "id": "chapter-02", "title": "第二章：建立习惯", "file": "chapter-02.md", "order": 2 },
+        { "id": "chapter-03", "title": "第三章：持续精进", "file": "chapter-03.md", "order": 3 },
+        { "id": "math-limit-01", "title": "第四章：极限与连续", "file": "math-limit-01.md", "order": 4 },
+        { "id": "math-derivative-01", "title": "第五章：导数与微分", "file": "math-derivative-01.md", "order": 5 },
+        { "id": "math-integral-01", "title": "第六章：积分学入门", "file": "math-integral-01.md", "order": 6 },
+        { "id": "math-multivar-01", "title": "第七章：多元函数微分", "file": "math-multivar-01.md", "order": 7 },
+        { "id": "math-series-01", "title": "第八章：无穷级数", "file": "math-series-01.md", "order": 8 }
       ]
     },
     {
-      "id": "algorithms",
-      "title": "算法与数据结构",
-      "description": "经典算法、数据结构与刷题技巧",
-      "icon": "🧮",
+      "id": "cet4",
+      "title": "英语四级",
+      "description": "词汇、阅读、听力、写作与翻译",
+      "icon": "🔤",
       "chapters": [
-        {
-          "id": "algo-01",
-          "title": "第一章：数组与链表",
-          "file": "algo-01.md",
-          "order": 1
-        },
-        {
-          "id": "algo-02",
-          "title": "第二章：栈与队列",
-          "file": "algo-02.md",
-          "order": 2
-        },
-        {
-          "id": "algo-03",
-          "title": "第三章：递归与分治",
-          "file": "algo-03.md",
-          "order": 3
-        },
-        {
-          "id": "algo-04",
-          "title": "第四章：二叉树与图",
-          "file": "algo-04.md",
-          "order": 4
-        }
+        { "id": "chapter-01", "title": "第一章：开始学习", "file": "chapter-01.md", "order": 1 },
+        { "id": "chapter-02", "title": "第二章：建立习惯", "file": "chapter-02.md", "order": 2 },
+        { "id": "chapter-03", "title": "第三章：持续精进", "file": "chapter-03.md", "order": 3 },
+        { "id": "cet4-vocab-01", "title": "第四章：核心词汇突破", "file": "cet4-vocab-01.md", "order": 4 },
+        { "id": "cet4-reading-01", "title": "第五章：阅读理解技巧", "file": "cet4-reading-01.md", "order": 5 },
+        { "id": "cet4-listen-01", "title": "第六章：听力理解训练", "file": "cet4-listen-01.md", "order": 6 },
+        { "id": "cet4-write-01", "title": "第七章：写作与翻译", "file": "cet4-write-01.md", "order": 7 },
+        { "id": "cet4-simulate-01", "title": "第八章：全真模拟与应试策略", "file": "cet4-simulate-01.md", "order": 8 }
       ]
     },
     {
-      "id": "databases",
-      "title": "数据库原理",
-      "description": "关系型/非关系型数据库设计与优化",
-      "icon": "🗄️",
+      "id": "mech-eng",
+      "title": "机械工程",
+      "description": "图学、材料、原理、设计与制造",
+      "icon": "⚙️",
       "chapters": [
-        {
-          "id": "db-01",
-          "title": "第一章：SQL 基础与进阶",
-          "file": "db-01.md",
-          "order": 1
-        },
-        {
-          "id": "db-nosql-01",
-          "title": "第二章：NoSQL 与文档数据库",
-          "file": "db-nosql-01.md",
-          "order": 2
-        }
+        { "id": "chapter-01", "title": "第一章：开始学习", "file": "chapter-01.md", "order": 1 },
+        { "id": "chapter-02", "title": "第二章：建立习惯", "file": "chapter-02.md", "order": 2 },
+        { "id": "chapter-03", "title": "第三章：持续精进", "file": "chapter-03.md", "order": 3 },
+        { "id": "mech-drawing-01", "title": "第四章：工程图学基础", "file": "mech-drawing-01.md", "order": 4 },
+        { "id": "mech-material-01", "title": "第五章：工程材料基础", "file": "mech-material-01.md", "order": 5 },
+        { "id": "mech-principle-01", "title": "第六章：机械原理基础", "file": "mech-principle-01.md", "order": 6 },
+        { "id": "mech-design-01", "title": "第七章：机械设计基础", "file": "mech-design-01.md", "order": 7 },
+        { "id": "mech-manufacture-01", "title": "第八章：制造技术概论", "file": "mech-manufacture-01.md", "order": 8 }
       ]
     }
   ]
