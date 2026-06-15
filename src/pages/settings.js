@@ -1,18 +1,10 @@
 import {
   exportProgressJson,
-  getLocalProgress,
   importProgressJson,
 } from '../progress.js';
-import { getCloudStatus, scheduleCloudSync, syncFromCloud } from '../sync.js';
 import { link, navigate } from '../router.js';
-import { signOut, getCurrentUser } from '../auth.js';
 
 export function renderSettings(app) {
-  const progress = getLocalProgress();
-  const cloud = getCloudStatus();
-  const user = getCurrentUser();
-  const email = user?.email || '未登录';
-
   app.innerHTML = `
     <header class="site-header">
       <div>
@@ -22,22 +14,9 @@ export function renderSettings(app) {
     </header>
 
     <section class="card">
-      <h2>当前账号</h2>
-      <p class="muted">邮箱: <strong>${email}</strong></p>
-      <button type="button" class="btn" id="logout-btn">退出登录</button>
-    </section>
-
-    <section class="card">
-      <h2>云端状态</h2>
-      <p id="cloud-status" class="muted">
-        ${cloud === 'configured' ? 'Supabase 已配置，进度会自动同步。' : 'Supabase 未配置：仅本地保存进度。'}
-      </p>
-      <div class="row">
-        <button type="button" class="btn" id="sync-now" ${cloud !== 'configured' ? 'disabled' : ''}>
-          立即从云端同步
-        </button>
-      </div>
-      <p id="sync-message" class="small muted"></p>
+      <h2>进度存储</h2>
+      <p class="muted">当前使用本地存储，进度保存在浏览器中。</p>
+      <p class="warn small">清除浏览器数据会丢失进度，请先导出备份。</p>
     </section>
 
     <section class="card">
@@ -55,30 +34,8 @@ export function renderSettings(app) {
 
   bindNav(app);
 
-  // 退出登录
-  app.querySelector('#logout-btn').addEventListener('click', async () => {
-    try {
-      await signOut();
-      navigate('/login');
-    } catch (err) {
-      showMessage('sync-message', '退出登录失败');
-    }
-  });
-
-  app.querySelector('#sync-now').addEventListener('click', async () => {
-    showMessage('sync-message', '同步中…');
-    const result = await syncFromCloud();
-    if (result.ok) {
-      showMessage('sync-message', '同步成功');
-      renderSettings(app);
-    } else {
-      showMessage('sync-message', `同步失败：${result.reason}`);
-    }
-  });
-
   app.querySelector('#export-json').addEventListener('click', () => {
-    const progress = getLocalProgress();
-    const json = exportProgressJson(progress);
+    const json = exportProgressJson();
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -89,13 +46,12 @@ export function renderSettings(app) {
     showMessage('backup-message', '已导出备份文件');
   });
 
-  app.querySelector('#import-json').addEventListener('change', async (e) => {
+  app.querySelector('#import-json').addEventListener('change', (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     try {
       const text = await file.text();
-      const imported = importProgressJson(text);
-      scheduleCloudSync(imported);
+      importProgressJson(text);
       showMessage('backup-message', '导入成功');
       renderSettings(app);
     } catch (err) {

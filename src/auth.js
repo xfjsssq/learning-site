@@ -1,7 +1,5 @@
-import { getSupabaseClient } from './supabase.js';
-
 let currentUser = null;
-let authReady = false;
+let authReady = true;
 const listeners = new Set();
 
 function notify() {
@@ -19,65 +17,29 @@ export function getCurrentUser() {
 }
 
 export function isAuthenticated() {
-  return !!currentUser;
+  return true;
 }
 
 export async function initAuth() {
-  const supabase = getSupabaseClient();
-  if (!supabase) {
-    authReady = true;
-    return;
-  }
-
-  const { data: { session } } = await supabase.auth.getSession();
-  currentUser = session?.user ?? null;
+  currentUser = { name: '本地用户' };
   authReady = true;
   notify();
-
-  supabase.auth.onAuthStateChange((_event, session) => {
-    currentUser = session?.user ?? null;
-    notify();
-  });
 }
 
-export async function signUp(email, password) {
-  const supabase = getSupabaseClient();
-  if (!supabase) throw new Error('Supabase 未配置');
-
-  const { data, error } = await supabase.auth.signUp({ email, password });
-  if (error) throw error;
-  return data;
+export async function signUp() {
+  return { user: { name: '本地用户' } };
 }
 
-export async function signIn(email, password) {
-  const supabase = getSupabaseClient();
-  if (!supabase) throw new Error('Supabase 未配置');
-
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) throw error;
-  return data;
+export async function signIn() {
+  return { user: { name: '本地用户' } };
 }
 
-export async function signInWithOAuth(provider) {
-  const supabase = getSupabaseClient();
-  if (!supabase) throw new Error('Supabase 未配置');
-
-  const redirectTo = `${window.location.origin}${import.meta.env.BASE_URL}auth/callback`;
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider,
-    options: { redirectTo },
-  });
-  if (error) throw error;
-  return data;
+export async function signInWithOAuth() {
+  return { url: null };
 }
 
 export async function signOut() {
-  const supabase = getSupabaseClient();
-  if (!supabase) return;
-
-  await supabase.auth.signOut();
-  currentUser = null;
-  notify();
+  // 纯本地模式不需要退出登录
 }
 
 export function isAuthReady() {

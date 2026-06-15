@@ -1,8 +1,5 @@
 import { getSubjectById, getChapters } from '../courses.js';
-import {
-  getLocalProgress,
-  getProgressPercent,
-} from '../progress.js';
+import { getProgressPercent } from '../progress.js';
 import { link, navigate } from '../router.js';
 
 export function renderSubject(app, subjectId) {
@@ -19,10 +16,10 @@ export function renderSubject(app, subjectId) {
   }
 
   const chapters = getChapters(subjectId);
-  const progress = getLocalProgress();
+  const progress = JSON.parse(localStorage.getItem('learning-site-progress-v2') || '{"completedChapters":[],"lastVisited":{},"studyLog":[],"updatedAt":null}');
   const subjectChapters = chapters.map((c) => c.id);
-  const completedInSubject = progress.completedChapters.filter((id) => subjectChapters.includes(id)).length;
-  const percent = chapters.length ? Math.round((completedInSubject / chapters.length) * 100) : 0;
+  const completedInSubject = (progress.completedChapters || []).filter((id) => subjectChapters.includes(id)).length;
+  const percent = getProgressPercent(completedInSubject, chapters.length);
 
   app.innerHTML = `
     <header class="site-header">
@@ -54,8 +51,8 @@ export function renderSubject(app, subjectId) {
       <ul class="chapter-list">
         ${chapters
           .map((chapter) => {
-            const done = progress.completedChapters.includes(chapter.id);
-            const last = progress.lastVisited[chapter.id];
+            const done = (progress.completedChapters || []).includes(chapter.id);
+            const last = progress.lastVisited?.[chapter.id];
             return `
               <li class="chapter-item ${done ? 'done' : ''}">
                 <a href="${link(`/lesson/${subjectId}/${chapter.id}`)}" data-nav="/lesson/${subjectId}/${chapter.id}">

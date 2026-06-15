@@ -1,12 +1,6 @@
 import { marked } from 'marked';
 import { getChapterById, getChapters, getChapterSubjectId } from '../courses.js';
-import {
-  getLocalProgress,
-  markChapterComplete,
-  markChapterIncomplete,
-  touchChapter,
-} from '../progress.js';
-import { scheduleCloudSync } from '../sync.js';
+import { getProgressPercent, markChapterComplete, markChapterIncomplete, touchChapter } from '../progress.js';
 import { link, navigate } from '../router.js';
 
 marked.setOptions({ gfm: true, breaks: true });
@@ -24,10 +18,8 @@ export function renderLesson(app, subjectId, chapterId) {
     return;
   }
 
-  let progress = getLocalProgress();
-  progress = touchChapter(progress, chapter.id);
-  scheduleCloudSync(progress);
-
+  touchChapter(chapter.id);
+  const progress = JSON.parse(localStorage.getItem('learning-site-progress-v2') || '{"completedChapters":[],"lastVisited":{},"studyLog":[],"updatedAt":null}');
   const html = marked.parse(getChapterContent(chapter));
   const isDone = progress.completedChapters.includes(chapter.id);
 
@@ -70,13 +62,12 @@ export function renderLesson(app, subjectId, chapterId) {
 
   const btn = app.querySelector('#toggle-complete');
   btn.addEventListener('click', () => {
-    let current = getLocalProgress();
+    const current = JSON.parse(localStorage.getItem('learning-site-progress-v2') || '{"completedChapters":[],"lastVisited":{},"studyLog":[],"updatedAt":null}');
     if (current.completedChapters.includes(chapter.id)) {
-      current = markChapterIncomplete(current, chapter.id);
+      markChapterIncomplete(chapter.id);
     } else {
-      current = markChapterComplete(current, chapter.id);
+      markChapterComplete(chapter.id);
     }
-    scheduleCloudSync(current);
     renderLesson(app, subjectId, chapterId);
   });
 }
